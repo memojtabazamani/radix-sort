@@ -42,16 +42,23 @@ namespace RadixSort
                 {
                     string index = numb.ToString();
                     int intVal = (int)Char.GetNumericValue(index[x]);
-
+                    // در اینجا باید بر اساس شماره ارزش مکانی که هم اکنون هستیم 
+                    // به صف اضافه کنیم
+                    // که در واقع مرتب سازی میباشد
                     if (tempNumber[intVal] == null) tempNumber[intVal] = new Queue<int>();
                     tempNumber[intVal].Enqueue(numb);
                 }
+                // باید صف قبلی را پاک کنیم 
                 number.Clear();
                 
+                // در اینجا باید مانور خود را برروی صف جدید مرتب شده انجام بدهیم
                 foreach (Queue<int> qu in tempNumber)
                 {
+                    // اگر آن ارزش مکانی خالی نبود
                     if (qu != null)
                     {
+                        // سپس باید عدد های داخل آن ارزش مکانی را به آرایه عدد اضافه کنیم
+                        // تا مجدادا روی آن مانور بدهیم
                         foreach (int nu in qu)
                         {
                             number.Enqueue(nu);
@@ -59,6 +66,8 @@ namespace RadixSort
                     }
                 }
                 tempNumber = new Queue<int>[10];
+                // سپس باید ارزش مکانی را یک مرتبه ببریم بالا
+                // در اینجا بر عکس هست چون از سمت چپ اندیس عدد هارا میشمارد پس باید متغی ررا یک عدد کم کنیم
                 x--;
             }
             Console.ForegroundColor = ConsoleColor.Green;
